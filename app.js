@@ -48,7 +48,7 @@ const selectItem = (event, img) => {
     sliders.push(img);
   }
   else{
-    sliders.pop(img)
+    sliders.splice(item, 1)
     element.classList.remove('added')
   }
 }
@@ -74,12 +74,13 @@ const createSlider = () => {
   // hide image aria
   imagesArea.style.display = 'none';
   
-  duration = document.getElementById("doration").value || 1000;
+   duration = document.getElementById("doration").value || 1000;
+  // console.log(duration, "before")
  
-  if(duration < 1000){
-    alert("please input valid number")
-    return ;
-  }
+  // if(duration < 1000){
+  //   alert("please input valid number")
+  //  return;
+  // }
   
  
   sliders.forEach(slide => {
@@ -132,7 +133,13 @@ searchBtn.addEventListener('click', function () {
 })
 
 sliderBtn.addEventListener('click', function () {
-  createSlider()
+  duration = document.getElementById("doration").value || 1000;
+  if(duration <0){
+    alert('please type valid number')
+  }
+  else{
+    createSlider()
+  }
 })
 
 
@@ -150,5 +157,5 @@ const toggleSpinner = () => {
   const spinner = document.getElementById('spinner');
   spinner.classList.toggle('d-none')
   gallery.classList.toggle('d-none')
-  console.log(spinner)
+  
 }
